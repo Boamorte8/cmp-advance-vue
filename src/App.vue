@@ -2,42 +2,59 @@
   <div>
 <!--    <the-header></the-header>-->
     <TheHeader />
-    <badge-list></badge-list>
-    <user-info
-      :full-name="activeUser.name"
-      :info-text="activeUser.description"
-      :role="activeUser.role"
-    ></user-info>
-    <course-goals #default="slotsProps">
-<!--      <template #default="slotsProps">-->
-        <h2>{{ slotsProps.item }}</h2>
-        <p>{{ slotsProps['another-propt'] }}</p>
-<!--      </template>-->
-    </course-goals>
+    <button @click="setSelectedComponent('active-goals')">Active Goals</button>
+    <button @click="setSelectedComponent('manage-goals')">Manage Goals</button>
+<!--    <active-goals v-if="selectededComponent === 'active-goals'"></active-goals>-->
+<!--    <manage-goals v-if="selectededComponent === 'manage-goals'"></manage-goals>-->
+    <keep-alive>
+      <component :is="selectedComponent"></component>
+    </keep-alive>
+<!--    <badge-list></badge-list>-->
+<!--    <user-info-->
+<!--      :full-name="activeUser.name"-->
+<!--      :info-text="activeUser.description"-->
+<!--      :role="activeUser.role"-->
+<!--    ></user-info>-->
+<!--    <course-goals #default="slotsProps">-->
+<!--&lt;!&ndash;      <template #default="slotsProps">&ndash;&gt;-->
+<!--        <h2>{{ slotsProps.item }}</h2>-->
+<!--        <p>{{ slotsProps['another-propt'] }}</p>-->
+<!--&lt;!&ndash;      </template>&ndash;&gt;-->
+<!--    </course-goals>-->
   </div>
 </template>
 
 <script>
 import TheHeader from './components/TheHeader.vue';
-import BadgeList from './components/BadgeList.vue';
-import UserInfo from './components/UserInfo.vue';
-import CourseGoals from './components/CourseGoals.vue';
+// import BadgeList from './components/BadgeList.vue';
+// import UserInfo from './components/UserInfo.vue';
+// import CourseGoals from './components/CourseGoals.vue';
+import ActiveGoals from './components/ActiveGoals.vue';
+import ManageGoals from './components/ManageGoals.vue';
 
 export default {
   components: {
     TheHeader,
-    BadgeList,
-    UserInfo,
-    CourseGoals,
+    // BadgeList,
+    // UserInfo,
+    // CourseGoals,
+    ActiveGoals,
+    ManageGoals,
   },
   data() {
     return {
+      selectedComponent: 'active-goals',
       activeUser: {
         name: 'Maximilian Schwarzmüller',
         description: 'Site owner and admin',
         role: 'admin',
       },
     };
+  },
+  methods: {
+    setSelectedComponent(cmp) {
+      this.selectedComponent = cmp;
+    },
   },
 };
 </script>

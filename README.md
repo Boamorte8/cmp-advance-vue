@@ -13,3 +13,6 @@ In this project I will learn about components advanced on Vue
   - You can define content to be projected like default, only put the default content inside the slot tag
   - The shorthand for v-slot: is '#'
   - You can pass data to the slots to be displayed in the content that define the slot
+- Dynamic Components: when you need to display a component depending on a condition but without to use if statements
+  - keep-alive is a tag is a good feature when you need to keep the state of a component even that component is destroyed
+  - 
